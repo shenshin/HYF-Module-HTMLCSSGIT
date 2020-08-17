@@ -53,7 +53,6 @@ footer,
 }
 main {
   display: flex;
-  /* padding-top: 160px; */
 }
 aside {
   flex-basis: 25%;
@@ -129,4 +128,22 @@ footer p {
   margin-top: 5px;
   font-weight: normal;
   margin-bottom: 30px;
+}
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    height: 300px;
+    background-image: none;
+  }
+  header h1 {
+    padding-top: 15px;
+  }
+  header img {
+    align-self: unset;
+    margin-left: unset;
+  }
+  main {
+    flex-direction: column;
+  }
 }
