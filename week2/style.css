@@ -152,7 +152,7 @@ looking at that specific drone */
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
 }
 #grid-flex .grid-item h3 {
   width: 100%;
