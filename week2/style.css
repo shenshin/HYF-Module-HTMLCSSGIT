@@ -72,9 +72,6 @@ h3 {
   font-family: 'Russo One';
   color: var(--dark2);
 }
-img {
-  width: 60%;
-}
 /* Headers for two Sections */
 section h2 {
   background-color: var(--dark1);
@@ -124,13 +121,17 @@ looking at that specific drone */
   display: grid;
 }
 
-/****** Arranging elements of the 'floats' column *****/
-#grid-floats img {
+#grid-floats img,
+#grid-flex img {
   margin-top: 10px;
 }
-#grid-floats p {
+#grid-floats p,
+#grid-flex p {
   padding-top: 10px;
 }
+
+/****** Arranging elements of the 'floats' column *****/
+
 #grid-floats .grid-item:nth-child(odd) img {
   float: left;
   margin-right: 5px;
@@ -144,12 +145,13 @@ looking at that specific drone */
   clear: both;
 }
 
-/***** Arranging elements of the 'floats' column *****/
+/***** Arranging elements of the 'flex' column *****/
 
 #grid-flex .grid-item {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: space-between;
   align-items: flex-start;
 }
 #grid-flex .grid-item h3 {
@@ -159,7 +161,10 @@ looking at that specific drone */
   width: 50%;
 }
 #grid-flex .grid-item p {
-  width: 50%;
+  width: 45%;
+}
+#grid-flex .grid-item:nth-child(even) img {
+  order: 1;
 }
 
 /*************** Small screens ****************/
@@ -182,12 +187,15 @@ looking at that specific drone */
     margin-bottom: 20px;
   }
 
-  img {
+  #grid-floats img {
+    width: 50%;
+  }
+  /* img {
     float: none;
     width: 100%;
     margin-bottom: 10px;
     transition: 0.5s linear;
-  }
+  } */
 }
 /***************** Medium screens *********************/
 @media screen and (min-width: 600px) and (max-width: 1024px) {
@@ -217,6 +225,26 @@ looking at that specific drone */
   .grid-item:nth-child(n + 3) {
     grid-column: span 2;
   }
+  /********* Arranging floats elements ***********/
+
+  /* On first 2 articles */
+  #grid-floats .grid-item img {
+    width: 50%;
+  }
+  /* Ont the rest articles */
+  #grid-floats .grid-item:nth-child(n + 3) img {
+    width: 100%;
+    float: none;
+  }
+
+  /********** Arranging flex elements ************/
+  #grid-flex .grid-item:nth-child(n + 3) {
+    flex-direction: column;
+  }
+  #grid-flex .grid-item:nth-child(n + 3) img,
+  #grid-flex .grid-item:nth-child(n + 3) p {
+    width: 100%;
+  }
 }
 /******************** Large screens ***********************/
 @media screen and (min-width: 1024px) {
@@ -227,6 +255,7 @@ looking at that specific drone */
   each other (not one above(below) another) I use flex in a row */
   main {
     display: flex;
+    flex-direction: row;
   }
   section h2 {
     height: 40px;
@@ -235,10 +264,12 @@ looking at that specific drone */
     letter-spacing: 0.3rem;
   }
   section:first-child {
+    flex-basis: 50%;
     padding-right: 4px;
     border-right: 1px dotted var(--light1);
   }
   section:last-child {
+    flex-basis: 50%;
     padding-left: 4px;
   }
   #grid-floats,
@@ -246,7 +277,27 @@ looking at that specific drone */
     grid-template-columns: 1fr 1fr;
     grid-gap: 4px;
   }
+  /* Make first article two cells long */
   .grid-item:first-child {
     grid-column: span 2;
+  }
+  /********* Arranging floats elements ***********/
+  #grid-floats .grid-item:first-child img {
+    width: 50%;
+  }
+  #grid-floats .grid-item:not(:first-child) img,
+  #grid-floats .grid-item:not(:first-child) p {
+    float: none;
+    width: 100%;
+  }
+
+  /***** Arranging flex elements *****/
+  /* For all articles except first */
+  #grid-flex .grid-item:not(:first-child) {
+    flex-direction: column;
+  }
+  #grid-flex .grid-item:not(:first-child) img,
+  #grid-flex .grid-item:not(:first-child) p {
+    width: 100%;
   }
 }
